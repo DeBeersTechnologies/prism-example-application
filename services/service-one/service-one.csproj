@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0</TargetFramework>
+	  <RootNamespace>prism_application.services.service_one</RootNamespace>
+  </PropertyGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\service-one.interfaces\service-one.interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
