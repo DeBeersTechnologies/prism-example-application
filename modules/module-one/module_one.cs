@@ -10,7 +10,7 @@ namespace prism_application.modules.module_one
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            regionManager.RequestNavigate(RegionNames.ContentRegion, "ViewA");
+            regionManager.RequestNavigate(ApplicationRegionNames.ContentRegion, "ViewA");
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

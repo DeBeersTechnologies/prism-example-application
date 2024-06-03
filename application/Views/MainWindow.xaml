@@ -6,6 +6,6 @@
         xmlns:core="clr-namespace:prism_application.core;assembly=application.core"
         Title="{Binding Title}" Height="350" Width="525" >
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ContentRegion}" />
+        <ContentControl prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.ContentRegion}" />
     </Grid>
 </Window>

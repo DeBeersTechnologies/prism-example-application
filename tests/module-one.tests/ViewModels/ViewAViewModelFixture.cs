@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Prism.Events;
 using Prism.Regions;
 using prism_application.modules.module_one.ViewModels;
 using prism_application.services.service_one.interfaces;
@@ -10,6 +11,7 @@ namespace prism_application.modules.module_one.tests.ViewModels
     {
         Mock<IMessageService> _messageServiceMock;
         Mock<IRegionManager> _regionManagerMock;
+        private Mock<IEventAggregator> _eventAggregatorMock;
         const string MessageServiceDefaultMessage = "Some Value";
 
         public ViewAViewModelFixture()
@@ -19,12 +21,13 @@ namespace prism_application.modules.module_one.tests.ViewModels
             _messageServiceMock = messageService;
 
             _regionManagerMock = new Mock<IRegionManager>();
+            _eventAggregatorMock = new Mock<IEventAggregator>();
         }
 
         [Fact]
         public void MessagePropertyValueUpdated()
         {
-            var vm = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object);
+            var vm = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object, _eventAggregatorMock.Object);
 
             _messageServiceMock.Verify(x => x.GetMessage(), Times.Once);
 
@@ -34,7 +37,7 @@ namespace prism_application.modules.module_one.tests.ViewModels
         [Fact]
         public void MessageINotifyPropertyChangedCalled()
         {
-            var vm = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object);
+            var vm = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object, _eventAggregatorMock.Object);
             Assert.PropertyChanged(vm, nameof(vm.Message), () => vm.Message = "Changed");
         }
     }

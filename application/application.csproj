@@ -15,6 +15,14 @@
 	  <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="rename-updates\service-one.dll" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="rename-updates\service-one.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
 		<PackageReference Include="Prism.Unity" Version="8.1.97" />
 	</ItemGroup>
 	<ItemGroup>
@@ -22,5 +30,10 @@
 		<ProjectReference Include="..\application.core\application.core.csproj" />
 		<ProjectReference Include="..\services\service-one.interfaces\service-one.interfaces.csproj" />
 		<ProjectReference Include="..\services\service-one\service-one.csproj" />
+		<ProjectReference Include="..\updater-service.interfaces\updater-service.interfaces.csproj" />
+		<ProjectReference Include="..\updater-service\updater-service.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="services\" />
 	</ItemGroup>
 </Project>

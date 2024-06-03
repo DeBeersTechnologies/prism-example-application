@@ -1,4 +1,11 @@
-﻿using Prism.Regions;
+﻿using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
+using Microsoft.Xaml.Behaviors.Core;
+using Prism.Commands;
+using Prism.Events;
+using Prism.Regions;
+using prism_application.core.events;
 using prism_application.core.Mvvm;
 using prism_application.services.service_one.interfaces;
 
@@ -13,10 +20,16 @@ namespace prism_application.modules.module_one.ViewModels
             set => SetProperty(ref _message, value);
         }
 
-        public ViewAViewModel(IRegionManager regionManager, IMessageService messageService) :
+        public ICommand ReloadApplicationCommand { get; }
+
+        public ViewAViewModel(IRegionManager regionManager, IMessageService messageService, IEventAggregator eventAggregator) :
             base(regionManager)
         {
             Message = messageService.GetMessage();
+            ReloadApplicationCommand = new ActionCommand(obj =>
+            {
+                eventAggregator.GetEvent<RestartApplicationEvent>().Publish();
+            });
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
