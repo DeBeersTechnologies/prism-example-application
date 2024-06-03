@@ -1,13 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Modularity;
-using prism_application.services.service_one.interfaces;
+using prism_application.core.events;
 using prism_application.Views;
+using System;
+using System.IO;
 using System.Windows;
-using prism_application.services.service_one;
 using updater_service;
+using prism_application.core;
 
 namespace prism_application
 {
@@ -17,57 +16,32 @@ namespace prism_application
     public partial class App
     {
         private IUpdaterService _updaterService;
-        internal bool RestartRequired { set; get; }
 
-        protected override Window CreateShell()
-        {
-            _updaterService = Container.Resolve<IUpdaterService>();
-            return Container.Resolve<MainWindow>();
-        }
-
-        private void CheckForAvailableUpdates()
-        {
-            var applicationFolder = Environment.CurrentDirectory;
-            var updatesFolder = Path.Combine(applicationFolder, "updates");
-            if (!Directory.Exists(updatesFolder)) return;
-
-            var updates = Directory.GetFiles(updatesFolder);
-            if (updates.Length > 0)
-            {
-                foreach (var update in updates)
-                {
-                    var fileName = update.Substring(update.LastIndexOf(Path.DirectorySeparatorChar) + 1);
-                    var updateLocation = Path.Combine(applicationFolder, fileName);
-                    File.Move(update, updateLocation, true);
-                }
-            }
-        }
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            CheckForAvailableUpdates();
-            base.OnStartup(e);
-        }
+        protected override Window CreateShell() 
+            => Container.Resolve<MainWindow>();
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IMessageService, MessageService>();
+            containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
+            containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
             containerRegistry.RegisterSingleton<IUpdaterService, UpdaterService>();
+            _updaterService = Container.Resolve<IUpdaterService>();
+            _updaterService.CheckForAvailableUpdates();
         }
 
-        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        protected override IModuleCatalog CreateModuleCatalog()
+            => new DirectoryModuleCatalog() {  ModulePath = Directory.GetCurrentDirectory() };
+
+        protected override void OnStartup(StartupEventArgs e)
         {
-            moduleCatalog.AddModule<modules.module_one.Module> ();
+            base.OnStartup(e);
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
-
-            if (_updaterService.RestartRequired)
-            {
-                Process.Start(Environment.ProcessPath);
-            }
+            _updaterService.RestartIfNecessary();
         }
+
     }
 }

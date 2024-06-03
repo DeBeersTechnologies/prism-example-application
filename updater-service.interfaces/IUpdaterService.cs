@@ -2,5 +2,7 @@
 
 public interface IUpdaterService
 {
-    bool RestartRequired { get; }
+    void CheckForAvailableUpdates();
+    //void LoadModules(string path);
+    void RestartIfNecessary();
 }

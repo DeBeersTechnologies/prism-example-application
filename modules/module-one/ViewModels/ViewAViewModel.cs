@@ -26,10 +26,7 @@ namespace prism_application.modules.module_one.ViewModels
             base(regionManager)
         {
             Message = messageService.GetMessage();
-            ReloadApplicationCommand = new ActionCommand(obj =>
-            {
-                eventAggregator.GetEvent<RestartApplicationEvent>().Publish();
-            });
+            ReloadApplicationCommand = new ActionCommand(_ => eventAggregator.GetEvent<RestartApplicationEvent>().Publish());
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
