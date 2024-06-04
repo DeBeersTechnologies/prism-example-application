@@ -2,7 +2,6 @@
 using Prism.Modularity;
 using prism_application.core.events;
 using prism_application.Views;
-using System;
 using System.IO;
 using System.Windows;
 using updater_service;

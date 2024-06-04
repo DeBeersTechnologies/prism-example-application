@@ -4,7 +4,7 @@ namespace module.loader.comparers;
 
 internal class ModuleInfoComparer : IModuleInfoComparer
 {
-    public bool Equals(IModuleInfo left, IModuleInfo right)
+    public bool Equals(IModuleInfo? left, IModuleInfo? right)
     {
         if (ReferenceEquals(left, right)) return true;
         if (left is null || right is null) return false;

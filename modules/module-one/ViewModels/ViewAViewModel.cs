@@ -1,5 +1,7 @@
-﻿using System.Windows.Input;
-using Microsoft.Xaml.Behaviors.Core;
+﻿using System;
+using System.IO;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using prism_application.core.events;
@@ -24,8 +26,8 @@ namespace prism_application.modules.module_one.ViewModels
             base(regionManager)
         {
             Message = messageService.GetMessage();
-            ReloadApplicationCommand = new ActionCommand(_ => eventAggregator.GetEvent<RestartApplicationEvent>().Publish());
-            RollbackApplicationCommand = new ActionCommand(_ => eventAggregator.GetEvent<RollbackApplicationEvent>().Publish());
+            ReloadApplicationCommand = new DelegateCommand(() => eventAggregator.GetEvent<RestartApplicationEvent>().Publish());
+            RollbackApplicationCommand = new DelegateCommand(() => eventAggregator.GetEvent<RollbackApplicationEvent>().Publish());
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)

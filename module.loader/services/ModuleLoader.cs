@@ -42,7 +42,7 @@ internal class ModuleLoader : IModuleLoader
         _modulesWithMissingDependencies.Clear();
         var uri = new System.Uri(filePath).AbsoluteUri;
         var directory = new FileInfo(filePath).DirectoryName;
-        var moduleInfos = _moduleLocator.ParseDirectoriesForModulesToLoad(in directory, false).Where(info => info.Ref == uri);
+        var moduleInfos = _moduleLocator.ParseDirectoriesForModulesToLoad(in directory!, false).Where(info => info.Ref == uri);
 
         ParseModuleCatalogForThoseWhichAreSafeToLoad(in moduleInfos);
         AddLoadableModulesToTheApplicationModuleCatalog();
