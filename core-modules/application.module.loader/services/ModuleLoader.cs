@@ -2,23 +2,11 @@
 
 namespace application.module.loader.services;
 
-internal class ModuleLoader : IModuleLoader
+internal class ModuleLoader(IModuleManager moduleManager, IModuleCatalog loadedCatalog, IModuleLocator moduleLocator)
+    : IModuleLoader
 {
-    private readonly IModuleManager _moduleManager;
-    private readonly IModuleCatalog _catalogOfLoadedModules;
-    private readonly IModuleLocator _moduleLocator;
-
-    private readonly List<IModuleInfo> _safeToLoadModules;
-    private readonly List<IModuleInfo> _modulesWithMissingDependencies;
-
-    public ModuleLoader(IModuleManager moduleManager, IModuleCatalog loadedCatalog, IModuleLocator moduleLocator)
-    {
-        _moduleManager = moduleManager;
-        _catalogOfLoadedModules = loadedCatalog;
-        _moduleLocator = moduleLocator;
-        _modulesWithMissingDependencies = [];
-        _safeToLoadModules = [];
-    }
+    private readonly List<IModuleInfo> _safeToLoadModules = [];
+    private readonly List<IModuleInfo> _modulesWithMissingDependencies = [];
 
     public void LoadModules(string path)
     {
@@ -41,7 +29,7 @@ internal class ModuleLoader : IModuleLoader
         _modulesWithMissingDependencies.Clear();
         var uri = new System.Uri(filePath).AbsoluteUri;
         var directory = new FileInfo(filePath).DirectoryName;
-        var moduleInfos = _moduleLocator.ParseDirectoriesForModulesToLoad(in directory!, false).Where(info => info.Ref == uri);
+        var moduleInfos = moduleLocator.ParseDirectoriesForModulesToLoad(in directory!, false).Where(info => info.Ref == uri);
 
         ParseModuleCatalogForThoseWhichAreSafeToLoad(in moduleInfos);
         AddLoadableModulesToTheApplicationModuleCatalog();
@@ -52,7 +40,7 @@ internal class ModuleLoader : IModuleLoader
     {
         _safeToLoadModules.Clear();
         _modulesWithMissingDependencies.Clear();
-        var moduleInfos = _moduleLocator.ParseDirectoriesForModulesToLoad(in path, !doNotScanChildDirectories);
+        var moduleInfos = moduleLocator.ParseDirectoriesForModulesToLoad(in path, !doNotScanChildDirectories);
         ParseModuleCatalogForThoseWhichAreSafeToLoad(in moduleInfos);
         AddLoadableModulesToTheApplicationModuleCatalog();
         return _safeToLoadModules.Count;
@@ -68,7 +56,7 @@ internal class ModuleLoader : IModuleLoader
     private IEnumerable<IModuleInfo> NonLoadedModulesInThisCatalog(IEnumerable<IModuleInfo> catalog)
         => catalog
             .Where(moduleInfo
-                => !_catalogOfLoadedModules.Modules
+                => !loadedCatalog.Modules
                     .Any(info => info.ModuleName.Equals(moduleInfo.ModuleName)));
 
     private IEnumerable<IModuleInfo> WhichModulesHaveMissingDependencies(IList<IModuleInfo> catalogReference)
@@ -76,13 +64,13 @@ internal class ModuleLoader : IModuleLoader
             .Where(info
                 => info.DependsOn.Count != 0
                    && info.DependsOn.Any(dependency
-                       => _catalogOfLoadedModules.Modules.All(moduleInfo => moduleInfo.ModuleName != dependency)
+                       => loadedCatalog.Modules.All(moduleInfo => moduleInfo.ModuleName != dependency)
                           && catalogReference.All(moduleInfo => moduleInfo.ModuleName != dependency)));
 
     private void AddLoadableModulesToTheApplicationModuleCatalog()
     {
-        _safeToLoadModules.ForEach(moduleInfo => _catalogOfLoadedModules.AddModule(moduleInfo));
-        _catalogOfLoadedModules.Initialize();
-        _safeToLoadModules.ForEach(info => _moduleManager.LoadModule(info.ModuleName));
+        _safeToLoadModules.ForEach(moduleInfo => loadedCatalog.AddModule(moduleInfo));
+        loadedCatalog.Initialize();
+        _safeToLoadModules.ForEach(info => moduleManager.LoadModule(info.ModuleName));
     }
 }

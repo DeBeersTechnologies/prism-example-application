@@ -1,7 +1,5 @@
-﻿namespace application
+﻿namespace application;
+public static class ApplicationRegionNames
 {
-    public static class ApplicationRegionNames
-    {
-        public const string ContentRegion = "ContentRegion";
-    }
+    public const string ContentRegion = "ContentRegion";
 }

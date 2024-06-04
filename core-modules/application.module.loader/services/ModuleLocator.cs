@@ -4,18 +4,10 @@ using Prism.Modularity;
 
 namespace application.module.loader.services;
 
-internal class ModuleLocator : IModuleLocator
+internal class ModuleLocator(IModuleInfoFactory moduleInfoFactory, IModuleInfoComparer moduleInfoComparer)
+    : IModuleLocator
 {
-    private readonly IModuleInfoFactory _moduleInfoFactory;
-    private readonly IModuleInfoComparer _moduleInfoComparer;
-    private readonly List<IModuleInfo> _moduleList;
-
-    public ModuleLocator(IModuleInfoFactory moduleInfoFactory, IModuleInfoComparer moduleInfoComparer)
-    {
-        _moduleInfoFactory = moduleInfoFactory;
-        _moduleInfoComparer = moduleInfoComparer;
-        _moduleList = new List<IModuleInfo>();
-    }
+    private readonly List<IModuleInfo> _moduleList = [];
 
     public IEnumerable<IModuleInfo> ParseDirectoriesForModulesToLoad(in string path, bool scanChildDirectories = true)
     {
@@ -25,7 +17,7 @@ internal class ModuleLocator : IModuleLocator
         if (scanChildDirectories)
             ParseChildDirectoriesForModulesToLoad(in path);
 
-        return _moduleList.OrderBy(info => info.ModuleName).Reverse().Distinct(_moduleInfoComparer);
+        return _moduleList.OrderBy(info => info.ModuleName).Reverse().Distinct(moduleInfoComparer);
     }
 
     private void ParseChildDirectoriesForModulesToLoad(in string path)
@@ -43,7 +35,7 @@ internal class ModuleLocator : IModuleLocator
 
         var moduleReflectionOnlyAssembly = loadedAssemblies.First(asm => asm.FullName == typeof(IModule).Assembly.FullName);
         var moduleType = moduleReflectionOnlyAssembly.GetType(typeof(IModule).FullName!);
-        var modules = _moduleInfoFactory.GetModuleInfos(in directory, moduleType!);
+        var modules = moduleInfoFactory.GetModuleInfos(in directory, moduleType!);
         var array = modules.ToArray();
         return array;
     }

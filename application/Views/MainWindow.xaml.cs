@@ -1,7 +1,5 @@
-﻿namespace application.Views
+﻿namespace application.Views;
+public partial class MainWindow
 {
-    public partial class MainWindow
-    {
-        public MainWindow() => InitializeComponent();
-    }
+    public MainWindow() => InitializeComponent();
 }

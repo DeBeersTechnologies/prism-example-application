@@ -7,35 +7,30 @@ using application.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 
-namespace application
+namespace application;
+public partial class App
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App
+    private IUpdaterService _updaterService;
+
+    protected override Window CreateShell()
+        => Container.Resolve<MainWindow>();
+
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        private IUpdaterService _updaterService;
-
-        protected override Window CreateShell() 
-            => (Window)Container.Resolve<MainWindow>();
-
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
-            containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
-            containerRegistry.RegisterSingleton<IUpdaterService, UpdaterService>();
-            _updaterService = Container.Resolve<IUpdaterService>();
-            _updaterService.ApplyUpdates();
-        }
-
-        protected override IModuleCatalog CreateModuleCatalog()
-            => new DirectoryModuleCatalog() {  ModulePath = Directory.GetCurrentDirectory() };
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            base.OnExit(e);
-            _updaterService.RestartIfNecessary();
-        }
-
+        containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
+        containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
+        containerRegistry.RegisterSingleton<IUpdaterService, UpdaterService>();
+        _updaterService = Container.Resolve<IUpdaterService>();
+        _updaterService.ApplyUpdates();
     }
+
+    protected override IModuleCatalog CreateModuleCatalog()
+        => new DirectoryModuleCatalog() { ModulePath = Directory.GetCurrentDirectory() };
+
+    protected override void OnExit(ExitEventArgs e)
+    {
+        base.OnExit(e);
+        _updaterService.RestartIfNecessary();
+    }
+
 }

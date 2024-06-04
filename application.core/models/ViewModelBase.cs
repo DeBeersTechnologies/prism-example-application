@@ -1,18 +1,16 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
 
-namespace application.models
+namespace application.models;
+public abstract class ViewModelBase : BindableBase, IDestructible
 {
-    public abstract class ViewModelBase : BindableBase, IDestructible
+    protected ViewModelBase()
     {
-        protected ViewModelBase()
-        {
 
-        }
+    }
 
-        public virtual void Destroy()
-        {
+    public virtual void Destroy()
+    {
 
-        }
     }
 }
