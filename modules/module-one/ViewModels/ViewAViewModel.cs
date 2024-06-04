@@ -1,8 +1,5 @@
-﻿using System.Diagnostics;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Microsoft.Xaml.Behaviors.Core;
-using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using prism_application.core.events;
@@ -21,17 +18,18 @@ namespace prism_application.modules.module_one.ViewModels
         }
 
         public ICommand ReloadApplicationCommand { get; }
+        public ICommand RollbackApplicationCommand { get; }
 
         public ViewAViewModel(IRegionManager regionManager, IMessageService messageService, IEventAggregator eventAggregator) :
             base(regionManager)
         {
             Message = messageService.GetMessage();
             ReloadApplicationCommand = new ActionCommand(_ => eventAggregator.GetEvent<RestartApplicationEvent>().Publish());
+            RollbackApplicationCommand = new ActionCommand(_ => eventAggregator.GetEvent<RollbackApplicationEvent>().Publish());
         }
 
         public override void OnNavigatedTo(NavigationContext navigationContext)
         {
-            //do something
         }
     }
 }

@@ -14,8 +14,32 @@ public class UpdaterService : IUpdaterService
             RestartRequired = true;
             eventAggregator.GetEvent<ShutDownTheApplication>().Publish();
         });
+
+        eventAggregator.GetEvent<RollbackApplicationEvent>().Subscribe(() =>
+        {
+            RestartRequired = true;
+            Rollback();
+            eventAggregator.GetEvent<ShutDownTheApplication>().Publish();
+        });
     }
 
+    private void Rollback()
+    {
+        var applicationFolder = Environment.CurrentDirectory;
+        var updatesFolder = Path.Combine(applicationFolder, "updates");
+        var rollbackFolder = Path.Combine(applicationFolder, "roll-back");
+
+        var rolls = Directory.GetFiles(rollbackFolder);
+        foreach (var roll in rolls) 
+        {
+            var rollName = roll.Substring(roll.LastIndexOf(Path.DirectorySeparatorChar) + 1);
+            var fileName = rollName.Substring(0, rollName.IndexOf('l') + 2);
+            var rollbackLocation = Path.Combine(updatesFolder, fileName);
+
+            File.Move(roll, rollbackLocation, true);            
+        }
+
+    }
 
     public void CheckForAvailableUpdates()
     {
