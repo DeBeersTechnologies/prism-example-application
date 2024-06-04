@@ -1,10 +1,11 @@
-﻿using Prism.Commands;
+﻿using System.ComponentModel;
+using application.commands;
+using application.events;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using prism_application.core.events;
-using System.ComponentModel;
 
-namespace prism_application.ViewModels
+namespace application.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {

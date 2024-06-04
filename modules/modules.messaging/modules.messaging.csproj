@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net8.0-windows</TargetFramework>
+	  <RootNamespace>modules.messaging</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\modules.messaging.interfaces\modules.messaging.interfaces.csproj" />
+  </ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /Y $(TargetPath) $(ProjectDir)..\..\Build\net8.0-windows10.0.17763.0\modules\&#xD;&#xA;xcopy /Y $(TargetDir)$(TargetName).interfaces.dll $(ProjectDir)..\..\Build\net8.0-windows10.0.17763.0\modules\" />
+	</Target>
+
+</Project>

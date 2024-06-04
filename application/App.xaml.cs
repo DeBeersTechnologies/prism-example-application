@@ -1,13 +1,12 @@
-﻿using Prism.Ioc;
-using Prism.Modularity;
-using prism_application.core.events;
-using prism_application.Views;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
-using updater_service;
-using prism_application.core;
+using application.commands;
+using application.module.updater;
+using application.Views;
+using Prism.Ioc;
+using Prism.Modularity;
 
-namespace prism_application
+namespace application
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -17,7 +16,7 @@ namespace prism_application
         private IUpdaterService _updaterService;
 
         protected override Window CreateShell() 
-            => Container.Resolve<MainWindow>();
+            => (Window)Container.Resolve<MainWindow>();
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -30,11 +29,6 @@ namespace prism_application
 
         protected override IModuleCatalog CreateModuleCatalog()
             => new DirectoryModuleCatalog() {  ModulePath = Directory.GetCurrentDirectory() };
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-        }
 
         protected override void OnExit(ExitEventArgs e)
         {

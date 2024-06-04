@@ -1,4 +1,4 @@
-﻿namespace prism_application.core
+﻿namespace application
 {
     public static class ApplicationRegionNames
     {

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>application.module.updater</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\application.core\application.core.csproj" />
+    <ProjectReference Include="..\application.module.updater.interfaces\application.module.updater.interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace prism_application.core;
+namespace application;
 
 public class ApplicationService : IApplicationService
 {

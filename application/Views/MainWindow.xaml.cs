@@ -1,4 +1,4 @@
-﻿namespace prism_application.Views
+﻿namespace application.Views
 {
     public partial class MainWindow
     {

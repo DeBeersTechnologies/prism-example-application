@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace prism_application.core.events;
+namespace application.events;
 
 public class RestartApplicationEvent : PubSubEvent { }
 public class RollbackApplicationEvent : PubSubEvent { }

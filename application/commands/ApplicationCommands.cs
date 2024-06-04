@@ -1,6 +1,6 @@
 ﻿using Prism.Commands;
 
-namespace prism_application.core.events;
+namespace application.commands;
 
 internal class ApplicationCommands : IApplicationCommands
 {

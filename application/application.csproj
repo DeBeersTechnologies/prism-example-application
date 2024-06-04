@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<RootNamespace>prism_application</RootNamespace>
+		<RootNamespace>application</RootNamespace>
 		<OutputType>WinExe</OutputType>
-		<StartupObject>prism_application.App</StartupObject>
+		<StartupObject>application.App</StartupObject>
 		<UseWPF>true</UseWPF>
 		<TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
 		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
@@ -22,20 +22,20 @@
 		<Page Remove="services\**" />
 	</ItemGroup>
 	<ItemGroup>
-		<None Remove="rename-updates\service-one.dll" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="rename-updates\service-one.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="Prism.Unity" Version="8.1.97" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\application.core\application.core.csproj" />
-		<ProjectReference Include="..\module.loader\module.loader.csproj" />
-		<ProjectReference Include="..\updater-service.interfaces\updater-service.interfaces.csproj" />
-		<ProjectReference Include="..\updater-service\updater-service.csproj" />
+		<ProjectReference Include="..\core-modules\application.module.loader\application.module.loader.csproj" />
+		<ProjectReference Include="..\core-modules\application.module.updater.interfaces\application.module.updater.interfaces.csproj" />
+		<ProjectReference Include="..\core-modules\application.module.updater\application.module.updater.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="update-example\modules.messaging.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="update-example\services.messaging.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>
