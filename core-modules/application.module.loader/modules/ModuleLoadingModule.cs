@@ -1,6 +1,7 @@
 ﻿using application.module.loader.comparers;
 using application.module.loader.factories;
 using application.module.loader.services;
+using application.services;
 using Prism.Ioc;
 using Prism.Modularity;
 

@@ -2,6 +2,7 @@
 using System.Windows;
 using application.commands;
 using application.module.updater;
+using application.services;
 using application.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -24,7 +25,7 @@ namespace application
             containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
             containerRegistry.RegisterSingleton<IUpdaterService, UpdaterService>();
             _updaterService = Container.Resolve<IUpdaterService>();
-            _updaterService.CheckForAvailableUpdates();
+            _updaterService.ApplyUpdates();
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

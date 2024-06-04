@@ -2,6 +2,6 @@
 
 public interface IUpdaterService
 {
-    void CheckForAvailableUpdates();
+    void ApplyUpdates();
     void RestartIfNecessary();
 }

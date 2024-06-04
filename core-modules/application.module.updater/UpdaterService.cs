@@ -1,14 +1,17 @@
 ﻿using System.Diagnostics;
 using application.events;
+using application.services;
 using Prism.Events;
 
 namespace application.module.updater;
 
 public class UpdaterService : IUpdaterService
 {
+    private readonly IApplicationService _applicationService;
 
-    public UpdaterService(IEventAggregator eventAggregator)
+    public UpdaterService(IEventAggregator eventAggregator, IApplicationService applicationService)
     {
+        _applicationService = applicationService;
         eventAggregator.GetEvent<RestartApplicationEvent>().Subscribe(() =>
         {
             RestartRequired = true;
@@ -25,15 +28,14 @@ public class UpdaterService : IUpdaterService
 
     private void Rollback()
     {
-        var applicationFolder = Environment.CurrentDirectory;
-        var updatesFolder = Path.Combine(applicationFolder, "updates");
-        var rollbackFolder = Path.Combine(applicationFolder, "roll-back");
+        var updatesFolder = _applicationService.UpdatesDirectory;
+        var rollbackFolder = _applicationService.RollbackDirectory;
 
         var rolls = Directory.GetFiles(rollbackFolder);
         foreach (var roll in rolls) 
         {
             var rollName = roll.Substring(roll.LastIndexOf(Path.DirectorySeparatorChar) + 1);
-            var fileName = rollName.Substring(0, rollName.IndexOf('-'));
+            var fileName = $"{rollName.Substring(0, rollName.IndexOf('-'))}=rb";
             var rollbackLocation = Path.Combine(updatesFolder, fileName);
 
             File.Move(roll, rollbackLocation, true);            
@@ -41,12 +43,11 @@ public class UpdaterService : IUpdaterService
 
     }
 
-    public void CheckForAvailableUpdates()
+    public void ApplyUpdates()
     {
-        var applicationFolder = Environment.CurrentDirectory;
-        var modulesFolder = Path.Combine(applicationFolder, "modules");
-        var updatesFolder = Path.Combine(applicationFolder, "updates");
-        var rollbackFolder = Path.Combine(applicationFolder, "roll-back");
+        var modulesFolder = _applicationService.CoreModulesDirectory;
+        var updatesFolder = _applicationService.UpdatesDirectory;
+        var rollbackFolder = _applicationService.RollbackDirectory;
 
         if (!Directory.Exists(updatesFolder)) Directory.CreateDirectory(updatesFolder);
         if (!Directory.Exists(rollbackFolder)) Directory.CreateDirectory(rollbackFolder);
@@ -54,15 +55,28 @@ public class UpdaterService : IUpdaterService
         var updates = Directory.GetFiles(updatesFolder);
         if (updates.Length > 0)
         {
+            var isRollback = false;
             foreach (var update in updates)
             {
-                var fileName = update.Substring(update.LastIndexOf(Path.DirectorySeparatorChar) + 1);
-                var originalFileLocation = Path.Combine(modulesFolder, fileName);
-                var rollbackFileName = $"{fileName}-{DateOnly.FromDateTime(DateTime.Now).ToString().Replace('/', '-')}";
-                var rollBackLocation = Path.Combine(rollbackFolder, rollbackFileName);
+                if (update.EndsWith("*rb"))
+                {
+                    isRollback = true;
+                }
 
-                File.Copy(originalFileLocation, rollBackLocation, true);
+                var fileName = isRollback 
+                    ? update.Substring(update.LastIndexOf(Path.DirectorySeparatorChar) + 1, update.IndexOf('='))
+                    : update.Substring(update.LastIndexOf(Path.DirectorySeparatorChar) + 1);
+                var originalFileLocation = Path.Combine(modulesFolder, fileName);
+                var rollbackFileName = $"{fileName}-{DateTime.Now:O}".Replace(':', '-');
+                var rollBackLocation = Path.Combine(rollbackFolder, rollbackFileName);
+                
+
+                if (!isRollback && File.Exists(originalFileLocation))
+                    File.Copy(originalFileLocation, rollBackLocation);
+
+
                 File.Move(update, originalFileLocation, true);
+                isRollback = false;
             }
         }
     }
