@@ -22,15 +22,16 @@ public class ModuleUpdateService : IModuleUpdateService
     {
         _applicationService = applicationService;
         _applicationCommands = applicationCommands;
+
+        _applicationCommands.CloseApplicationGracefully.RegisterCommand(CommandCloseApplicationGracefully);
+
         _shutDownTheApplicationEventEvent = eventAggregator.GetEvent<ShutDownTheApplicationEvent>();
+        eventAggregator.GetEvent<ApplyUpdatesEvent>().Subscribe(ApplyUpdates);
         eventAggregator.GetEvent<RestartTheApplicationEvent>().Subscribe(() =>
         {
             RestartRequired = true;
             AppExit();
         });
-
-        eventAggregator.GetEvent<ApplyUpdatesEvent>().Subscribe(ApplyUpdates);
-
         eventAggregator.GetEvent<RollbackUpdateEvent>().Subscribe(() =>
         {
             RestartRequired = true;
@@ -38,7 +39,6 @@ public class ModuleUpdateService : IModuleUpdateService
             AppExit();
         });
 
-        _applicationCommands.CloseApplicationGracefully.RegisterCommand(CommandCloseApplicationGracefully);
         ApplyUpdates();
     }
 
