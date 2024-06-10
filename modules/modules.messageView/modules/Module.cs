@@ -6,17 +6,13 @@ using Prism.Regions;
 
 namespace modules.messageView.modules;
 
-[Module(ModuleName = "ModuleOneModule")]
-[ModuleDependency("ServiceOneModule")]
+[Module(ModuleName = "MessageViewModule")]
+[ModuleDependency("MessagingModule")]
 public class Module(IRegionManager regionManager) : IModule
 {
-    public void OnInitialized(IContainerProvider containerProvider)
-    {
-        regionManager.RequestNavigate(ApplicationRegionNames.ContentRegion, "ViewA");
-    }
+    public void OnInitialized(IContainerProvider containerProvider) 
+        => regionManager.RequestNavigate(ApplicationRegionNames.FullPageRegion, "ViewA");
 
-    public void RegisterTypes(IContainerRegistry containerRegistry)
-    {
-        containerRegistry.RegisterForNavigation<ViewA>();
-    }
+    public void RegisterTypes(IContainerRegistry containerRegistry) 
+        => containerRegistry.RegisterForNavigation<ViewA>();
 }

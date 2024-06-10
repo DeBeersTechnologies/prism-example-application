@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4C7076B9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{83433A40-3117-4685-82B1-6F2FF789D394}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{51831079-607A-4E06-9D7F-EC70B288C123}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application", "application\application.csproj", "{A964B79D-8EB5-48F8-8908-5F037EB661B4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.core", "application.core\application.core.csproj", "{940FF404-ACE8-42A8-999E-C16A2D974B13}"
@@ -16,10 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.messageView", "modules\modules.messageView\modules.messageView.csproj", "{23F36AF7-CC23-4F6B-81EC-D476599ECE7B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.messageView.tests", "tests\modules.messageView.tests\modules.messageView.tests.csproj", "{4817E261-4F39-4254-91DA-3E52737AAD03}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.module.updater", "core-modules\application.module.updater\application.module.updater.csproj", "{C60A781E-44A9-4106-B050-6F44A2429EE2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.module.updater.interfaces", "core-modules\application.module.updater.interfaces\application.module.updater.interfaces.csproj", "{8EAA6DAE-51DC-4DC8-831D-8E54503D849E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.module.loader", "core-modules\application.module.loader\application.module.loader.csproj", "{2962B1AB-7900-4199-9471-D7E085B2B460}"
 EndProject
@@ -51,14 +45,6 @@ Global
 		{4817E261-4F39-4254-91DA-3E52737AAD03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4817E261-4F39-4254-91DA-3E52737AAD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4817E261-4F39-4254-91DA-3E52737AAD03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C60A781E-44A9-4106-B050-6F44A2429EE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C60A781E-44A9-4106-B050-6F44A2429EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C60A781E-44A9-4106-B050-6F44A2429EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C60A781E-44A9-4106-B050-6F44A2429EE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EAA6DAE-51DC-4DC8-831D-8E54503D849E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EAA6DAE-51DC-4DC8-831D-8E54503D849E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EAA6DAE-51DC-4DC8-831D-8E54503D849E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EAA6DAE-51DC-4DC8-831D-8E54503D849E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2962B1AB-7900-4199-9471-D7E085B2B460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2962B1AB-7900-4199-9471-D7E085B2B460}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2962B1AB-7900-4199-9471-D7E085B2B460}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -78,8 +64,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{23F36AF7-CC23-4F6B-81EC-D476599ECE7B} = {83433A40-3117-4685-82B1-6F2FF789D394}
 		{4817E261-4F39-4254-91DA-3E52737AAD03} = {4C7076B9-14D2-47FC-8124-979A640BFFDA}
-		{C60A781E-44A9-4106-B050-6F44A2429EE2} = {0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}
-		{8EAA6DAE-51DC-4DC8-831D-8E54503D849E} = {0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}
 		{2962B1AB-7900-4199-9471-D7E085B2B460} = {0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}
 		{87B466EA-AF26-49E8-94E7-2F1541D57618} = {83433A40-3117-4685-82B1-6F2FF789D394}
 		{1D6FE2AB-31EF-450B-BD48-C728F0B6A4B5} = {83433A40-3117-4685-82B1-6F2FF789D394}

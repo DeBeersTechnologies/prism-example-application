@@ -1,4 +1,4 @@
-﻿namespace application;
+﻿namespace application.module.loader;
 
 public interface IModuleLoader
 {

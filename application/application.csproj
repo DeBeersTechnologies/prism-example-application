@@ -26,9 +26,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\application.core\application.core.csproj" />
-		<ProjectReference Include="..\core-modules\application.module.loader\application.module.loader.csproj" />
-		<ProjectReference Include="..\core-modules\application.module.updater.interfaces\application.module.updater.interfaces.csproj" />
-		<ProjectReference Include="..\core-modules\application.module.updater\application.module.updater.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="update-example\modules.messaging.dll">

@@ -3,7 +3,7 @@ using Prism.Modularity;
 
 namespace modules.messaging;
 
-[Module(ModuleName = "ServiceOneModule")]
+[Module(ModuleName = "MessagingModule")]
 public class Module : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider){ }
