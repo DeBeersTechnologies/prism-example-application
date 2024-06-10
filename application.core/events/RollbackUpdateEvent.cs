@@ -2,4 +2,4 @@
 
 namespace application.events;
 
-public class RestartApplicationEvent : PubSubEvent { }
+public class RollbackUpdateEvent : PubSubEvent { }

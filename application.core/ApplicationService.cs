@@ -12,7 +12,7 @@ public sealed class ApplicationService : IApplicationService
 {
     public ApplicationService(IEventAggregator eventAggregator)
     {
-        eventAggregator.GetEvent<ShutDownTheApplication>()
+        eventAggregator.GetEvent<ShutDownTheApplicationEvent>()
                        .Subscribe(Application.Current.Shutdown, ThreadOption.UIThread);
     }
 

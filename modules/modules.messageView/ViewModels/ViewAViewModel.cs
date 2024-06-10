@@ -6,30 +6,30 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 
-namespace modules.messageView.ViewModels
+namespace modules.messageView.ViewModels;
+public class ViewAViewModel : RegionAwareViewModel
 {
-    public class ViewAViewModel : RegionViewModelBase
+    private readonly RestartTheApplicationEvent _restartTheApplicationEvent;
+    private readonly RollbackUpdateEvent _rollbackUpdateEvent;
+    private string _message;
+
+    public ViewAViewModel(IRegionManager regionManager
+                        , IEventAggregator eventAggregator
+                        , IMessageService messageService) : base(regionManager)
     {
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set => SetProperty(ref _message, value);
-        }
+        Message = messageService.GetMessage();
+        _restartTheApplicationEvent = eventAggregator.GetEvent<RestartTheApplicationEvent>();
+        _rollbackUpdateEvent = eventAggregator.GetEvent<RollbackUpdateEvent>();
+    }
 
-        public ICommand ReloadApplicationCommand { get; }
-        public ICommand RollbackApplicationCommand { get; }
+    public override void OnNavigatedTo(NavigationContext navigationContext) { }
 
-        public ViewAViewModel(IRegionManager regionManager, IMessageService messageService, IEventAggregator eventAggregator) :
-            base(regionManager)
-        {
-            Message = messageService.GetMessage();
-            ReloadApplicationCommand = new DelegateCommand(() => eventAggregator.GetEvent<RestartApplicationEvent>().Publish());
-            RollbackApplicationCommand = new DelegateCommand(() => eventAggregator.GetEvent<RollbackApplicationEvent>().Publish());
-        }
+    public ICommand ReloadApplicationCommand => new DelegateCommand(_restartTheApplicationEvent.Publish);
+    public ICommand RollbackApplicationCommand => new DelegateCommand(_rollbackUpdateEvent.Publish);
 
-        public override void OnNavigatedTo(NavigationContext navigationContext)
-        {
-        }
+    public string Message
+    {
+        get => _message;
+        set => SetProperty(ref _message, value);
     }
 }

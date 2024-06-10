@@ -14,7 +14,7 @@ public class ModuleUpdateService : IModuleUpdateService
 {
     private readonly IApplicationService _applicationService;
     private readonly IApplicationCommands _applicationCommands;
-    private readonly ShutDownTheApplication _shutDownTheApplicationEvent;
+    private readonly ShutDownTheApplicationEvent _shutDownTheApplicationEventEvent;
 
     public ModuleUpdateService(IEventAggregator eventAggregator
                              , IApplicationService applicationService
@@ -22,8 +22,8 @@ public class ModuleUpdateService : IModuleUpdateService
     {
         _applicationService = applicationService;
         _applicationCommands = applicationCommands;
-        _shutDownTheApplicationEvent = eventAggregator.GetEvent<ShutDownTheApplication>();
-        eventAggregator.GetEvent<RestartApplicationEvent>().Subscribe(() =>
+        _shutDownTheApplicationEventEvent = eventAggregator.GetEvent<ShutDownTheApplicationEvent>();
+        eventAggregator.GetEvent<RestartTheApplicationEvent>().Subscribe(() =>
         {
             RestartRequired = true;
             AppExit();
@@ -31,7 +31,7 @@ public class ModuleUpdateService : IModuleUpdateService
 
         eventAggregator.GetEvent<ApplyUpdatesEvent>().Subscribe(ApplyUpdates);
 
-        eventAggregator.GetEvent<RollbackApplicationEvent>().Subscribe(() =>
+        eventAggregator.GetEvent<RollbackUpdateEvent>().Subscribe(() =>
         {
             RestartRequired = true;
             Rollback();
@@ -45,7 +45,7 @@ public class ModuleUpdateService : IModuleUpdateService
     private DelegateCommand CommandCloseApplicationGracefully
         => new(() =>
         {
-            _shutDownTheApplicationEvent.Publish();
+            _shutDownTheApplicationEventEvent.Publish();
             RestartIfNecessary();
         });
 
