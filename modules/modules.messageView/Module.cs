@@ -11,7 +11,7 @@ namespace modules.messageView.modules;
 public class Module(IRegionManager regionManager) : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider) 
-        => regionManager.RequestNavigate(ApplicationRegionNames.FullPageRegion, "ViewA");
+        => regionManager.RequestNavigate(ApplicationRegionNames.FullPageRegion, nameof(ViewA));
 
     public void RegisterTypes(IContainerRegistry containerRegistry) 
         => containerRegistry.RegisterForNavigation<ViewA>();

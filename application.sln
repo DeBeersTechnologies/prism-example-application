@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.messaging.interface
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core-modules", "core-modules", "{0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modules.buttons", "modules\modules.buttons\modules.buttons.csproj", "{B238FB5F-0F10-46BB-A6F0-40752D6B5932}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{1D6FE2AB-31EF-450B-BD48-C728F0B6A4B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D6FE2AB-31EF-450B-BD48-C728F0B6A4B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D6FE2AB-31EF-450B-BD48-C728F0B6A4B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B238FB5F-0F10-46BB-A6F0-40752D6B5932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B238FB5F-0F10-46BB-A6F0-40752D6B5932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B238FB5F-0F10-46BB-A6F0-40752D6B5932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B238FB5F-0F10-46BB-A6F0-40752D6B5932}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{2962B1AB-7900-4199-9471-D7E085B2B460} = {0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}
 		{87B466EA-AF26-49E8-94E7-2F1541D57618} = {83433A40-3117-4685-82B1-6F2FF789D394}
 		{1D6FE2AB-31EF-450B-BD48-C728F0B6A4B5} = {83433A40-3117-4685-82B1-6F2FF789D394}
+		{B238FB5F-0F10-46BB-A6F0-40752D6B5932} = {83433A40-3117-4685-82B1-6F2FF789D394}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {539A5C96-5289-4F21-959F-028AAF582765}

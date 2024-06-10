@@ -17,6 +17,7 @@ public partial class App
         containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
         containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
         containerRegistry.RegisterSingleton<IModuleUpdateService, ModuleUpdateService>();
+        Container.Resolve<IApplicationService>();
         Container.Resolve<IModuleUpdateService>();
     }
 

@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using modules.messaging.services;
+using Prism.Ioc;
 using Prism.Modularity;
 
 namespace modules.messaging;

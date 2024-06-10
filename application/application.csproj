@@ -28,6 +28,9 @@
 		<ProjectReference Include="..\application.core\application.core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Update="update-example\modules.buttons.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="update-example\modules.messaging.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

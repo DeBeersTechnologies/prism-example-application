@@ -27,7 +27,7 @@ namespace modules.messageView.tests.ViewModels
         [Fact]
         public void MessagePropertyValueUpdated()
         {
-            var vm = new ViewAViewModel(_regionManagerMock.Object, _eventAggregatorMock.Object, _messageServiceMock.Object);
+            var vm = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object);
 
             _messageServiceMock.Verify(x => x.GetMessage(), Times.Once);
 
@@ -37,7 +37,7 @@ namespace modules.messageView.tests.ViewModels
         [Fact]
         public void MessageINotifyPropertyChangedCalled()
         {
-            var model = new ViewAViewModel(_regionManagerMock.Object, _eventAggregatorMock.Object, _messageServiceMock.Object);
+            var model = new ViewAViewModel(_regionManagerMock.Object, _messageServiceMock.Object);
             Assert.PropertyChanged(model, nameof(model.Message), () => model.Message = "Changed");
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace modules.messaging;
+﻿namespace modules.messaging.services;
 public class MessageService : IMessageService
 {
     public string GetMessage()
