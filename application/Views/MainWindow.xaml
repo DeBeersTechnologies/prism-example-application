@@ -4,7 +4,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:core="clr-namespace:application;assembly=application.core"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525" WindowStyle="None" >
+        Title="{Binding Title}" Height="350" Width="525" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
     <Grid>
         <ContentControl prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.FullPageRegion}"/>
         <Grid>
@@ -16,8 +16,10 @@
                 <RowDefinition />
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
+            <ContentControl Grid.Column="0" Grid.Row="0"
+                            prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.TopLeft}" />
             <ContentControl Grid.Column="1" Grid.Row="1"
-                            prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.ButtonsRegion}" />
+                            prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.BottomRight}" />
         </Grid>
     </Grid>
 </Window>

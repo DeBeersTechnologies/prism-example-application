@@ -10,7 +10,7 @@ namespace modules.buttons;
 public sealed class Module(IRegionManager regionManager) : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider)
-        => regionManager.RequestNavigate(ApplicationRegionNames.ButtonsRegion, nameof(ButtonsView));
+        => regionManager.RequestNavigate(ApplicationRegionNames.BottomRight, nameof(ButtonsView));
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
         => containerRegistry.RegisterForNavigation<ButtonsView>();
