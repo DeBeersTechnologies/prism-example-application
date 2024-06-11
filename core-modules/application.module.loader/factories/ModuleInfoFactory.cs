@@ -3,7 +3,7 @@ using Prism.Modularity;
 
 namespace application.module.loader.factories;
 
-internal class ModuleInfoFactory : IModuleInfoFactory
+internal sealed class ModuleInfoFactory : IModuleInfoFactory
 {
     public IModuleInfo CreateModuleInfo(Type type)
     {

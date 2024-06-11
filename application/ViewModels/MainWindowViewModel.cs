@@ -2,7 +2,7 @@
 
 namespace application.ViewModels;
 
-public class MainWindowViewModel : BindableBase
+public sealed class MainWindowViewModel : BindableBase
 {
     private string _title = "Prism Application - demonstrating application updates";
 

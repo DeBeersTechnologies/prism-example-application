@@ -2,7 +2,7 @@
 
 namespace application.module.loader.comparers;
 
-internal class ModuleInfoComparer : IModuleInfoComparer
+internal sealed class ModuleInfoComparer : IModuleInfoComparer
 {
     public bool Equals(IModuleInfo? left, IModuleInfo? right)
     {

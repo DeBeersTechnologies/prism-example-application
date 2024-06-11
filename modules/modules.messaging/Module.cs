@@ -5,7 +5,7 @@ using Prism.Modularity;
 namespace modules.messaging;
 
 [Module(ModuleName = "MessagingModule")]
-public class Module : IModule
+public sealed class Module : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider){ }
 

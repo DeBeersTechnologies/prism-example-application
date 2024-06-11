@@ -5,25 +5,15 @@ using Prism.Events;
 using Prism.Regions;
 using System.Windows.Input;
 
-namespace modules.buttons.ViewModels
+namespace modules.buttons.ViewModels;
+public sealed class ButtonsViewModel(IRegionManager regionManage, IEventAggregator eventAggregator) : RegionAwareViewModel(regionManage)
 {
-    public class ButtonsViewModel : RegionAwareViewModel
-    {
-        private readonly RestartTheApplicationEvent _restartTheApplicationEvent;
-        private readonly ShutDownTheApplicationEvent _exitTheApplicationEvent;
-        private readonly RollbackUpdateEvent _rollbackUpdateEvent;
+    private readonly RestartTheApplicationEvent _restartTheApplicationEvent = eventAggregator.GetEvent<RestartTheApplicationEvent>();
+    private readonly ShutDownTheApplicationEvent _exitTheApplicationEvent = eventAggregator.GetEvent<ShutDownTheApplicationEvent>();
+    private readonly RollbackUpdateEvent _rollbackUpdateEvent = eventAggregator.GetEvent<RollbackUpdateEvent>();
 
-        public ButtonsViewModel(IRegionManager regionManage
-                              , IEventAggregator eventAggregator) : base(regionManage)
-        {
-            _restartTheApplicationEvent = eventAggregator.GetEvent<RestartTheApplicationEvent>();
-            _exitTheApplicationEvent = eventAggregator.GetEvent<ShutDownTheApplicationEvent>();
-            _rollbackUpdateEvent = eventAggregator.GetEvent<RollbackUpdateEvent>();
-        }
+    public ICommand ExitTheApplicationCommand => new DelegateCommand(_exitTheApplicationEvent.Publish);
+    public ICommand ReloadApplicationCommand => new DelegateCommand(_restartTheApplicationEvent.Publish);
+    public ICommand RollbackApplicationCommand => new DelegateCommand(_rollbackUpdateEvent.Publish);
 
-        public ICommand ExitTheApplicationCommand => new DelegateCommand(_exitTheApplicationEvent.Publish);
-        public ICommand ReloadApplicationCommand => new DelegateCommand(_restartTheApplicationEvent.Publish);
-        public ICommand RollbackApplicationCommand => new DelegateCommand(_rollbackUpdateEvent.Publish);
-
-    }
 }

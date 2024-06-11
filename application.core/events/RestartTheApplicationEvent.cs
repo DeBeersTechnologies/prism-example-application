@@ -2,4 +2,4 @@
 
 namespace application.events;
 
-public class RestartTheApplicationEvent : PubSubEvent { }
+public sealed class RestartTheApplicationEvent : PubSubEvent { }

@@ -1,13 +1,10 @@
-﻿using application.events;
-using application.models;
+﻿using application.models;
 using modules.messaging;
 using Prism.Regions;
 
 namespace modules.messageView.ViewModels;
-public class ViewAViewModel : RegionAwareViewModel
+public sealed class ViewAViewModel : RegionAwareViewModel
 {
-    //private readonly RestartTheApplicationEvent _restartTheApplicationEvent;
-    //private readonly RollbackUpdateEvent _rollbackUpdateEvent;
     private string _message;
 
     public ViewAViewModel(IRegionManager regionManager, IMessageService messageService) : base(regionManager) 

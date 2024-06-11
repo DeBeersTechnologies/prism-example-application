@@ -4,23 +4,22 @@ using System.Diagnostics;
 using System.IO;
 using application.commands;
 using application.events;
-using application.services;
 using Prism.Commands;
 using Prism.Events;
 
-namespace application;
+namespace application.services;
 
-public class ModuleUpdateService : IModuleUpdateService
+public sealed class ModuleUpdateService : IModuleUpdateService
 {
-    private readonly IApplicationService _applicationService;
     private readonly IApplicationCommands _applicationCommands;
+    private readonly IApplicationDirectoryService _applicationDirectoryService;
     private readonly ShutDownTheApplicationEvent _shutDownTheApplicationEventEvent;
 
     public ModuleUpdateService(IEventAggregator eventAggregator
-                             , IApplicationService applicationService
+                             , IApplicationDirectoryService applicationDirectoryService
                              , IApplicationCommands applicationCommands)
     {
-        _applicationService = applicationService;
+        _applicationDirectoryService = applicationDirectoryService;
         _applicationCommands = applicationCommands;
 
         _applicationCommands.CloseApplicationGracefully.RegisterCommand(CommandCloseApplicationGracefully);
@@ -58,8 +57,8 @@ public class ModuleUpdateService : IModuleUpdateService
 
     private void Rollback()
     {
-        var updatesFolder = _applicationService.UpdatesDirectory;
-        var rollbackFolder = _applicationService.RollbackDirectory;
+        var updatesFolder = _applicationDirectoryService.UpdatesDirectory;
+        var rollbackFolder = _applicationDirectoryService.RollbackDirectory;
 
         var rolls = Directory.GetFiles(rollbackFolder);
         foreach (var roll in rolls)
@@ -70,14 +69,13 @@ public class ModuleUpdateService : IModuleUpdateService
 
             File.Move(roll, rollbackLocation, true);
         }
-
     }
 
     private void ApplyUpdates()
     {
-        var modulesFolder = _applicationService.CoreModulesDirectory;
-        var updatesFolder = _applicationService.UpdatesDirectory;
-        var rollbackFolder = _applicationService.RollbackDirectory;
+        var modulesFolder = _applicationDirectoryService.ModulesDirectory;
+        var updatesFolder = _applicationDirectoryService.UpdatesDirectory;
+        var rollbackFolder = _applicationDirectoryService.RollbackDirectory;
 
         if (!Directory.Exists(updatesFolder)) Directory.CreateDirectory(updatesFolder);
         if (!Directory.Exists(rollbackFolder)) Directory.CreateDirectory(rollbackFolder);

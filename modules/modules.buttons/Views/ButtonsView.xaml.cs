@@ -1,7 +1,7 @@
 ﻿
 namespace modules.buttons.Views;
 
-public partial class ButtonsView
+public sealed partial class ButtonsView
 {
     public ButtonsView()
     {

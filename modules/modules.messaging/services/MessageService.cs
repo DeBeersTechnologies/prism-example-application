@@ -1,5 +1,5 @@
 ﻿namespace modules.messaging.services;
-public class MessageService : IMessageService
+public sealed class MessageService : IMessageService
 {
     public string GetMessage()
     {

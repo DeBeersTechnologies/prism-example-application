@@ -2,7 +2,7 @@
 
 namespace application.module.loader.services;
 
-internal class ModuleLoader(IModuleManager moduleManager, IModuleCatalog loadedCatalog, IModuleLocator moduleLocator)
+internal sealed class ModuleLoader(IModuleManager moduleManager, IModuleCatalog loadedCatalog, IModuleLocator moduleLocator)
     : IModuleLoader
 {
     private readonly List<IModuleInfo> _safeToLoadModules = [];

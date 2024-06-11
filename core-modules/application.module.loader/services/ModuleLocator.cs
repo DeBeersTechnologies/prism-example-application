@@ -4,7 +4,7 @@ using Prism.Modularity;
 
 namespace application.module.loader.services;
 
-internal class ModuleLocator(IModuleInfoFactory moduleInfoFactory, IModuleInfoComparer moduleInfoComparer)
+internal sealed class ModuleLocator(IModuleInfoFactory moduleInfoFactory, IModuleInfoComparer moduleInfoComparer)
     : IModuleLocator
 {
     private readonly List<IModuleInfo> _moduleList = [];

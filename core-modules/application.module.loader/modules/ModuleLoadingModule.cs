@@ -8,11 +8,11 @@ using Prism.Modularity;
 namespace application.module.loader.modules;
 
 [Module(ModuleName = "CoreModuleLoadingModule")]
-public class ModuleLoadingModule : IModule
+public sealed class ModuleLoadingModule : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider) =>
         containerProvider.Resolve<IModuleLoader>()
-                         .ScanAndLoadModules(containerProvider.Resolve<IApplicationService>().CoreModulesDirectory);
+                         .ScanAndLoadModules(containerProvider.Resolve<IApplicationDirectoryService>().ModulesDirectory);
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {

@@ -2,4 +2,4 @@
 
 namespace application.events;
 
-public class RollbackUpdateEvent : PubSubEvent { }
+public sealed class RollbackUpdateEvent : PubSubEvent { }

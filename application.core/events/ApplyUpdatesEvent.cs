@@ -2,4 +2,4 @@
 
 namespace application.events;
 
-public class ApplyUpdatesEvent : PubSubEvent { }
+public sealed class ApplyUpdatesEvent : PubSubEvent { }

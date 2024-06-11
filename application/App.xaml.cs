@@ -7,7 +7,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 
 namespace application;
-public partial class App
+public sealed partial class App
 {
     protected override Window CreateShell()
         => Container.Resolve<MainWindow>();
@@ -15,9 +15,13 @@ public partial class App
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
-        containerRegistry.RegisterSingleton<IApplicationService, ApplicationService>();
+        containerRegistry.RegisterSingleton<IApplicationShutdownService, ApplicationShutdownService>();
         containerRegistry.RegisterSingleton<IModuleUpdateService, ModuleUpdateService>();
-        Container.Resolve<IApplicationService>();
+
+        containerRegistry.Register<IApplicationDirectoryService, ApplicationDirectoryService>();
+        
+
+        Container.Resolve<IApplicationShutdownService>();
         Container.Resolve<IModuleUpdateService>();
     }
 
