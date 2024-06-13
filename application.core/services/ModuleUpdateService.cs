@@ -31,7 +31,7 @@ public sealed class ModuleUpdateService : IModuleUpdateService
             RestartRequired = true;
             AppExit();
         });
-        eventAggregator.GetEvent<RollbackUpdateEvent>().Subscribe(() =>
+        eventAggregator.GetEvent<RollbackUpdatesEvent>().Subscribe(() =>
         {
             RestartRequired = true;
             Rollback();

@@ -10,10 +10,10 @@ public sealed class ButtonsViewModel(IRegionManager regionManage, IEventAggregat
 {
     private readonly RestartTheApplicationEvent _restartTheApplicationEvent = eventAggregator.GetEvent<RestartTheApplicationEvent>();
     private readonly ShutDownTheApplicationEvent _exitTheApplicationEvent = eventAggregator.GetEvent<ShutDownTheApplicationEvent>();
-    private readonly RollbackUpdateEvent _rollbackUpdateEvent = eventAggregator.GetEvent<RollbackUpdateEvent>();
+    private readonly RollbackUpdatesEvent _rollbackUpdatesEvent = eventAggregator.GetEvent<RollbackUpdatesEvent>();
 
     public ICommand ExitTheApplicationCommand => new DelegateCommand(_exitTheApplicationEvent.Publish);
     public ICommand ReloadApplicationCommand => new DelegateCommand(_restartTheApplicationEvent.Publish);
-    public ICommand RollbackApplicationCommand => new DelegateCommand(_rollbackUpdateEvent.Publish);
+    public ICommand RollbackApplicationCommand => new DelegateCommand(_rollbackUpdatesEvent.Publish);
 
 }
