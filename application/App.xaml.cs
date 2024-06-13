@@ -14,12 +14,10 @@ public sealed partial class App
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>();
-        containerRegistry.RegisterSingleton<IApplicationShutdownService, ApplicationShutdownService>();
-        containerRegistry.RegisterSingleton<IModuleUpdateService, ModuleUpdateService>();
-
-        containerRegistry.Register<IApplicationDirectoryService, ApplicationDirectoryService>();
-        
+        containerRegistry.RegisterSingleton<IApplicationCommands, ApplicationCommands>()
+                         .RegisterSingleton<IApplicationShutdownService, ApplicationShutdownService>()
+                         .RegisterSingleton<IModuleUpdateService, ModuleUpdateService>()
+                         .Register<IApplicationDirectoryService, ApplicationDirectoryService>();
 
         Container.Resolve<IApplicationShutdownService>();
         Container.Resolve<IModuleUpdateService>();

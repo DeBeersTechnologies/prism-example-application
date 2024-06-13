@@ -31,6 +31,9 @@
 	  <None Update="update-example\modules.buttons.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	  <None Update="update-example\modules.messageView.dll">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Update="update-example\modules.messaging.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>

@@ -18,8 +18,12 @@
             </Grid.RowDefinitions>
             <ContentControl Grid.Column="0" Grid.Row="0"
                             prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.TopLeft}" />
+            <ContentControl Grid.Column="1" Grid.Row="0"
+                            prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.TopRight}" />
             <ContentControl Grid.Column="1" Grid.Row="1"
                             prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.BottomRight}" />
+            <ContentControl Grid.Column="0" Grid.Row="1"
+                            prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.BottomLeft}" />
         </Grid>
     </Grid>
 </Window>

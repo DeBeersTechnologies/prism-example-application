@@ -23,17 +23,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.messaging.interface
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core-modules", "core-modules", "{0E6ACAE2-68B9-48DF-AFF6-8BA2D80C7B2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modules.buttons", "modules\modules.buttons\modules.buttons.csproj", "{B238FB5F-0F10-46BB-A6F0-40752D6B5932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.buttons", "modules\modules.buttons\modules.buttons.csproj", "{B238FB5F-0F10-46BB-A6F0-40752D6B5932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modules.messaging.tests", "tests\modules.messaging.tests\modules.messaging.tests.csproj", "{2982D93B-EA88-46F4-ACDE-CB0798664E04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.messaging.tests", "tests\modules.messaging.tests\modules.messaging.tests.csproj", "{2982D93B-EA88-46F4-ACDE-CB0798664E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.module.loader.tests", "tests\application.module.loader.tests\application.module.loader.tests.csproj", "{7745F888-9813-4043-BD9E-048AAB5C9648}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.module.loader.tests", "tests\application.module.loader.tests\application.module.loader.tests.csproj", "{7745F888-9813-4043-BD9E-048AAB5C9648}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.buttons.tests", "tests\modules.buttons.tests\modules.buttons.tests.csproj", "{252896D5-928E-4D0D-A9F5-BF8B7AB099EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.core.tests", "tests\application.core.tests\application.core.tests.csproj", "{D6F65DE9-E920-4838-9E25-98074AF04270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.core.tests", "tests\application.core.tests\application.core.tests.csproj", "{D6F65DE9-E920-4838-9E25-98074AF04270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application.tests", "tests\application.tests\application.tests.csproj", "{806F9FA7-3CBE-4326-B3D8-9986CE3673B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "application.tests", "tests\application.tests\application.tests.csproj", "{806F9FA7-3CBE-4326-B3D8-9986CE3673B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modules.timekeeper", "modules\modules.timekeeper\modules.timekeeper.csproj", "{5279F247-EFE7-4D29-A286-0AF412708F36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "modules.timekeeper.interfaces", "modules\modules.timekeeper.interfaces\modules.timekeeper.interfaces.csproj", "{05A34DC2-81CF-45C7-B06F-DC7336EEF11F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "modules.timekeeper.tests", "tests\modules.timekeeper.tests\modules.timekeeper.tests.csproj", "{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +99,18 @@ Global
 		{806F9FA7-3CBE-4326-B3D8-9986CE3673B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{806F9FA7-3CBE-4326-B3D8-9986CE3673B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{806F9FA7-3CBE-4326-B3D8-9986CE3673B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5279F247-EFE7-4D29-A286-0AF412708F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5279F247-EFE7-4D29-A286-0AF412708F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5279F247-EFE7-4D29-A286-0AF412708F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5279F247-EFE7-4D29-A286-0AF412708F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A34DC2-81CF-45C7-B06F-DC7336EEF11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A34DC2-81CF-45C7-B06F-DC7336EEF11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A34DC2-81CF-45C7-B06F-DC7336EEF11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A34DC2-81CF-45C7-B06F-DC7336EEF11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +127,9 @@ Global
 		{252896D5-928E-4D0D-A9F5-BF8B7AB099EF} = {4C7076B9-14D2-47FC-8124-979A640BFFDA}
 		{D6F65DE9-E920-4838-9E25-98074AF04270} = {4C7076B9-14D2-47FC-8124-979A640BFFDA}
 		{806F9FA7-3CBE-4326-B3D8-9986CE3673B7} = {4C7076B9-14D2-47FC-8124-979A640BFFDA}
+		{5279F247-EFE7-4D29-A286-0AF412708F36} = {83433A40-3117-4685-82B1-6F2FF789D394}
+		{05A34DC2-81CF-45C7-B06F-DC7336EEF11F} = {83433A40-3117-4685-82B1-6F2FF789D394}
+		{3B93E9B9-F8E5-463C-B24C-D3C278DDF8A0} = {4C7076B9-14D2-47FC-8124-979A640BFFDA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {539A5C96-5289-4F21-959F-028AAF582765}
