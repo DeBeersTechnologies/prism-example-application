@@ -14,7 +14,7 @@ public sealed class ClockViewModel(IRegionManager regionManager, IEventAggregato
 
     public override void OnNavigatedTo(NavigationContext navigationContext)
     {
-        eventAggregator.GetEvent<TimeUpdateEvent>().Subscribe(SetTime);
+        eventAggregator.GetEvent<TimeUpdateEvent>().Subscribe(SetTime, ThreadOption.UIThread);
     }
 
     public int Hours
