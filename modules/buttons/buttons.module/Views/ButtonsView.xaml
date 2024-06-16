@@ -8,7 +8,6 @@
              prism:ViewModelLocator.AutoWireViewModel="True" 
              HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10">
     <StackPanel Orientation="Vertical">
-        <Button Margin="5 5" Width="60" Command="{Binding ExitTheApplicationCommand}">Exit</Button>
         <Button Margin="5 5" Width="60" Command="{Binding ReloadApplicationCommand}">Update</Button>
         <Button Margin="5 5" Width="60" Command="{Binding RollbackApplicationCommand}">Roll back</Button>
     </StackPanel>

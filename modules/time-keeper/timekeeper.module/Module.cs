@@ -4,7 +4,7 @@ using Prism.Modularity;
 
 namespace timekeeper;
 
-[Module(ModuleName = "TimekeeperModule")]
+[Module(ModuleName = ModuleDescription.ModuleName)]
 public class Module : IModule
 {
     public void OnInitialized(IContainerProvider containerProvider) 

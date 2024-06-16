@@ -8,6 +8,7 @@
 		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\application.core\application.core.csproj" />
 	  <ProjectReference Include="..\application.menubar\application.menubar.csproj" />
 	</ItemGroup>
 

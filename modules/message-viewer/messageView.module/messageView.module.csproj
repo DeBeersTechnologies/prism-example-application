@@ -10,6 +10,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\application.core\application.core.csproj" />
+		<ProjectReference Include="..\..\..\core-modules\menu-bar\application.menubar\application.menubar.csproj" />
 		<ProjectReference Include="..\..\messaging-service\messaging\messaging.csproj" />
 		<ProjectReference Include="..\..\time-keeper\timekeeper\timekeeper.csproj" />
 	</ItemGroup>
