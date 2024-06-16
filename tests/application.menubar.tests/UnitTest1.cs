@@ -1,4 +1,4 @@
-namespace modules.buttons.tests;
+namespace application.menubar.tests;
 
 public class UnitTest1
 {

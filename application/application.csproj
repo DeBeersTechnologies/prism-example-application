@@ -28,17 +28,20 @@
 		<ProjectReference Include="..\application.core\application.core.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Update="update-example\modules.buttons.dll">
+	  <None Update="update-example\buttons.module.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="update-example\modules.messageView.dll">
+	  <None Update="update-example\messageView.module.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="update-example\modules.messaging.dll">
+	  <None Update="update-example\messaging.module.dll">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Update="update-example\services.messaging.dll">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="update-example\" />
 	</ItemGroup>
 </Project>

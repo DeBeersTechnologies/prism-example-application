@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="messageView.Views.ClockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True" mc:Ignorable="d">
+    <Grid>
+        <Border Background="BlueViolet" Width="100" Height="30" CornerRadius="10"
+                BorderThickness="3"
+                BorderBrush="Brown"
+                Opacity="0.2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+        </Border>
+        <Border Width="100" Height="30" CornerRadius="10"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Hours, StringFormat='00', FallbackValue=00}"
+                           Foreground="Red"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="0"
+                           FontWeight="ExtraBold"
+                           FontSize="14"/>
+                <TextBlock Padding="0"
+                           FontWeight="Bold"
+                           FontSize="14"> :</TextBlock>
+                <TextBlock Text="{Binding Minutes, StringFormat='00', FallbackValue=00}"
+                           Foreground="Red"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="0"
+                           FontWeight="ExtraBold"
+                           FontSize="14"/>
+                <TextBlock Padding="0"
+                           FontWeight="Bold"
+                           FontSize="14"> :</TextBlock>
+                <TextBlock Text="{Binding Seconds, StringFormat='00', FallbackValue=00}"
+                           Foreground="Red"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Padding="0"
+                           FontWeight="ExtraBold"
+                           FontSize="14"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

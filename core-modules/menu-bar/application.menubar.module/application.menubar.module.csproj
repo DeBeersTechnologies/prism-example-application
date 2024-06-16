@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>application.menubar</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\application.menubar\application.menubar.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /Y $(OutDir)\application.menubar*.dll $(ProjectDir)..\..\..\Build\net8.0-windows10.0.17763.0\" />
+	</Target>
+</Project>

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<RootNamespace>timekeeper</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Prism.Wpf" Version="8.1.97" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\timekeeper\timekeeper.csproj" />
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy /Y $(OutDir)\timekeeper*.dll $(ProjectDir)..\..\..\Build\net8.0-windows10.0.17763.0\modules\" />
+	</Target>
+</Project>
