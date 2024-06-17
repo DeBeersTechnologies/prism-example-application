@@ -1,16 +1,13 @@
-﻿using application.events;
-using application.models;
+﻿using application.models;
+using buttons.services;
 using Prism.Commands;
-using Prism.Events;
 using Prism.Regions;
 
 namespace buttons.ViewModels;
-public sealed class ButtonsViewModel(IRegionManager regionManage, IEventAggregator eventAggregator) : RegionAwareViewModel(regionManage)
+public sealed class ButtonsViewModel(IRegionManager regionManage, IButtonsModuleService buttonsModuleService) : RegionAwareViewModel(regionManage)
 {
-    private readonly RestartTheApplicationEvent _restartTheApplicationEvent = eventAggregator.GetEvent<RestartTheApplicationEvent>();
-    private readonly RollbackUpdatesEvent _rollbackUpdatesEvent = eventAggregator.GetEvent<RollbackUpdatesEvent>();
-
-    public DelegateCommand ReloadApplicationCommand => new(_restartTheApplicationEvent.Publish);
-    public DelegateCommand RollbackApplicationCommand => new(_rollbackUpdatesEvent.Publish);
+    public DelegateCommand ExitApplicationCommand => buttonsModuleService.ExitTheApplication();
+    public DelegateCommand ReloadApplicationCommand => buttonsModuleService.ReloadTheApplication();
+    public DelegateCommand RollbackApplicationCommand => buttonsModuleService.RollbackUpdates();
 
 }

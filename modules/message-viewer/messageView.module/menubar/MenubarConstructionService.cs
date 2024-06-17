@@ -5,7 +5,10 @@ namespace messageView.menubar;
 
 internal class MenubarConstructionService
 {
-    public MenubarConstructionService(IMenuInfoFactory infoFactory, IMenuRegistrar menuRegistrar, IMenuService menuService, IDisplayService displayService)
+    public MenubarConstructionService(IMenuInfoFactory infoFactory
+                                    , IMenuRegistrar menuRegistrar
+                                    , IMenuService menuService
+                                    , IDisplayService displayService)
     {
         menuRegistrar.AddMenuItem(infoFactory.CreateMenuInfo("Message _Viewer",
                 MessagingViewMenuItems.MessageViewerMenu,

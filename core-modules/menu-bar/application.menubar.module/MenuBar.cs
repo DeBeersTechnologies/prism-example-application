@@ -16,13 +16,11 @@ public class Menubar : IModule
     {
         var regionManager = containerProvider.Resolve<IRegionManager>();
         regionManager.RegisterViewWithRegion(ApplicationRegionNames.ApplicationMenuBar, typeof(MenuBar));
-        containerProvider.Resolve<MenubarConstructionService>();
     }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterSingleton<IMenuRegistrar, MenuRegistrar>();
-        containerRegistry.RegisterSingleton<MenubarConstructionService>();
         containerRegistry.RegisterSingleton<IMenuInfoFactory, MenuInfo>();
         containerRegistry.RegisterSingleton<IMenuItemFactory, MenuItemFactory>();
         containerRegistry.RegisterSingleton<IMenuFacade, MenuFacade>();

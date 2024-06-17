@@ -1,8 +1,11 @@
-﻿using messageView.menubar;
+﻿using application;
+using messageView.menubar;
 using messageView.services;
 using messageView.Views;
+using Prism.Commands;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Regions;
 
 namespace messageView;
 
@@ -12,16 +15,22 @@ namespace messageView;
 [ModuleDependency(ModuleDependencies.TimekeeperModule)]
 public sealed class Module() : IModule
 {
-    public void OnInitialized(IContainerProvider containerProvider) 
-        => containerProvider.Resolve<MenubarConstructionService>();
+    public void OnInitialized(IContainerProvider containerProvider)
+    //=> containerProvider.Resolve<MenubarConstructionService>();
+    {
+        var regionManager = containerProvider.Resolve<IRegionManager>();
+        regionManager.RequestNavigate(ApplicationRegionNames.FullPageRegion, nameof(ClockView));
+        regionManager.RequestNavigate(ApplicationRegionNames.TopRight, nameof(ViewA));
+
+    }
 
     public void RegisterTypes(IContainerRegistry containerRegistry)
     {
         containerRegistry.RegisterForNavigation<ViewA>();
         containerRegistry.RegisterForNavigation<ClockView>();
 
-        containerRegistry.RegisterSingleton<MenubarConstructionService>()
-                         .RegisterSingleton<IDisplayService, DisplayService>();       
+        //containerRegistry.Register<MenubarConstructionService>()
+        //                 .RegisterSingleton<IDisplayService, DisplayService>();
 
     }
 }
