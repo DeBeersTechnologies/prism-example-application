@@ -13,15 +13,14 @@
                 <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions >
-                <RowDefinition Height="30" />
+                <RowDefinition MaxHeight="30"/>
                 <RowDefinition />
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <!-- Menu Bar -->
             <ContentControl x:Name="MenuBarRegion" 
-                      Grid.Row="0"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="30"
-                      Style="{DynamicResource ContentControlRegionStyle}"
+                      Grid.Row="0" Grid.ColumnSpan="2"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="100"
                       prism:RegionManager.RegionName="{x:Static core:ApplicationRegionNames.ApplicationMenuBar}" />
 
             <ContentControl Grid.Column="0" Grid.Row="1"

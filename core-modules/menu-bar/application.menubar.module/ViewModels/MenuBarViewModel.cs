@@ -43,11 +43,12 @@ internal class MenuBarViewModel : BindableBase
     private void AddThisMenuItem(ref IMenuInfo info)
     {
         if (info.Name == ApplicationMenuNames.ApplicationMenuSeparator)
-            MenuItems.Add(_menuItemFacade.CreateMenuSeparator());
-        else
         {
-            var vm = _menuItemFacade.CreateMenuViewModel(info);
-            MenuItems.Add(_menuItemFacade.CreateMenuItemFromViewModel(vm));
+            MenuItems.Add(_menuItemFacade.CreateMenuSeparator());
+            return;
         }
+
+        var vm = _menuItemFacade.CreateMenuViewModel(info);
+        MenuItems.Add(_menuItemFacade.CreateMenuItemFromViewModel(vm));
     }
 }

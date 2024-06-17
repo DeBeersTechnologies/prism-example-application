@@ -1,11 +1,9 @@
-﻿<UserControl x:Class="application.menubar.Views.MenuBar"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:ClassModifier="internal"
-             xmlns:prism="http://prismlibrary.com/"    
-             prism:ViewModelLocator.AutoWireViewModel="True">
-   <Menu IsMainMenu="True" 
-         ItemsSource="{Binding MenuItems}" 
-         Width="Auto" VerticalAlignment="Stretch" Height="30">
-   </Menu>
-</UserControl>
+﻿<Menu x:Class="application.menubar.Views.MenuBar"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      x:ClassModifier="internal"
+      xmlns:prism="http://prismlibrary.com/"    
+      prism:ViewModelLocator.AutoWireViewModel="True" 
+      IsMainMenu="True" Width="Auto" Height="20" MaxHeight="20"
+      HorizontalAlignment="Stretch" VerticalAlignment="Center"
+      ItemsSource="{Binding MenuItems}"  />
